@@ -1,0 +1,29 @@
+<h1>Post Your Tweet Below!</h1>
+<%= link_to "View Tweets", tweets_path %>
+
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+
+<% if @tweet.errors.any? %>
+  <ul>
+    <% @tweet.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with scope: :tweet, url: tweets_path, local: true do |f|%>
+
+<p>
+  <%= f.label :message, "Enter the tweet below!" %>
+  <br />
+  <%= f.text_field :message %>
+</p>
+
+<p>
+   <%= f.submit %>
+</p>
+
+<% end %>
